@@ -16,6 +16,12 @@ $ git clone <https://github.com/wenderson-me/tau-pact-contract-tests.git>
 # Install dependencies
 $ npm install
 
+# Run the provider server
+$ npm run provider
+
+# Run the consumer server
+$ npm run consumer
+
 ```
 
 ## Stack
