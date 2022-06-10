@@ -22,6 +22,9 @@ $ npm run provider
 # Run the consumer server
 $ npm run consumer
 
+# Run the consumer contract tests
+$ npm run test:consumer
+
 ```
 
 ## Stack
