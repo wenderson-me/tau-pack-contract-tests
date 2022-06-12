@@ -22,8 +22,11 @@ $ npm run provider
 # Run the consumer server
 $ npm run consumer
 
-# Run the consumer contract tests
+# Run the consumer (generate contracts) contract tests
 $ npm run test:consumer
+
+# Run the provider (verify contracts) contract tests
+$ npm run test:provider
 
 ```
 
