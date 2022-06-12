@@ -1,6 +1,8 @@
 const path = require("path")
-const { Verifier } = require("@pact-foundation/pact")
+const { Verifier, Matchers } = require("@pact-foundation/pact")
 const { server, importData } = require("../../../src/provider")
+const { postClient } = require("../../../src/consumer")
+
 const SERVER_URL = "http://localhost:8081"
 
 server.listen(8081, () => {
