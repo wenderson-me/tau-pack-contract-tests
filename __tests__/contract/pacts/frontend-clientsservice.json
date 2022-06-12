@@ -44,6 +44,29 @@
       }
     },
     {
+      "description": "a request for id client",
+      "providerState": "i have a client for ID",
+      "request": {
+        "method": "GET",
+        "path": "/clients/1",
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "firstName": "Lisa",
+          "lastName": "Simpson",
+          "age": 8,
+          "id": 1
+        }
+      }
+    },
+    {
       "description": "a request to create client with firstname and lastname",
       "providerState": "i create a new client",
       "request": {

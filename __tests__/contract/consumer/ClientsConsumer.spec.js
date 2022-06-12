@@ -1,7 +1,7 @@
 "use strict"
 
 const { Matchers } = require("@pact-foundation/pact")
-const { getClients, postClient } = require("../../../src/consumer")
+const { getClients, getClient, postClient } = require("../../../src/consumer")
 
 describe('Clients Service', () => {
   const GET_EXPECTED_BODY = [{
@@ -57,19 +57,59 @@ describe('Clients Service', () => {
   })
 })
 
-const POST_BODY = {
-  firstName: "Wendy",
-  lastName: "Monteiro",
-  age: 25,
-}
-const POST_EXPECTED_BODY = {
-  firstName: POST_BODY.firstName,
-  lastName: POST_BODY.lastName,
-  age: POST_BODY.age,
-  id: 4
-}
+describe('GET Client', () => {
+
+  const GET_EXPECTED_BODY = {
+    "firstName": "Lisa",
+    "lastName": "Simpson",
+    "age": 8,
+    "id": 1
+  }
+
+  beforeEach(() => {
+    const interaction = {
+      state: "i have a client for ID",
+      uponReceiving: "a request for id client",
+      withRequest: {
+        method: "GET",
+        path: "/clients/1",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+        },
+      },
+      willRespondWith: {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: GET_EXPECTED_BODY,
+      },
+    }
+    return provider.addInteraction(interaction)
+  })
+
+  test('returns correct body, header and statusCode', async () => {
+    const response = await getClient(1)
+    expect(response.headers['content-type']).toBe("application/json; charset=utf-8")
+    expect(response.data).toEqual(GET_EXPECTED_BODY)
+    expect(response.status).toEqual(200)
+  });
+});
 
 describe("POST Client", () => {
+
+  const POST_BODY = {
+    firstName: "Wendy",
+    lastName: "Monteiro",
+    age: 25,
+  }
+  const POST_EXPECTED_BODY = {
+    firstName: POST_BODY.firstName,
+    lastName: POST_BODY.lastName,
+    age: POST_BODY.age,
+    id: 4
+  }
+
   beforeEach(() => {
     const interaction = {
       state: "i create a new client",
