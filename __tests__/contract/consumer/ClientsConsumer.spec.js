@@ -57,7 +57,7 @@ describe('Clients Service', () => {
   })
 })
 
-describe('GET Client', () => {
+describe('GET Client ID', () => {
 
   const GET_EXPECTED_BODY = {
     "firstName": "Lisa",
